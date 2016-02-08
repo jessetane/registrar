@@ -1,0 +1,10 @@
+{
+  "name": "registrar",
+  "version": "1.0.0",
+  "description": "A digital signature based identity memorization, recognition and administration protocol",
+  "dependencies": {
+    "hex-string": "^1.0.1"
+  },
+  "author": "jesse.tane@gmail.com",
+  "license": "Public Domain"
+}
