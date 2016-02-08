@@ -128,10 +128,11 @@ function createDatabase (cb) {
 ## API
 
 ### `var r = new Registrar(opts)`
-The constructor.  
 1. `opts`
   * `crypto` An NaCL implementation with [this API](https://github.com/dchest/tweetnacl-js)
   * `storage` A storage backend with [this API](https://github.com/jessetane/registrar-sql)
+
+The constructor.
 
 ### `r.getChallenge(cb)`
 This method passes a 64 byte nonce to `cb` that must be signed over for authentication.
