@@ -108,9 +108,6 @@ r.getChallenge(function (err, challenge) {
 
 ## Testing
 This module includes an abstract test suite that aims to make implementing and testing storage backends straightforward. Each group of tests requires an isolated environment, so a storage implementation's tests should look something like this:
-
-> Note that in order to verify consistency during testing, storage implementations need to expose a special method `getIdentityCount`.
-
 ```javascript
 require('registrar/test')(createDatabase)
 
@@ -124,6 +121,8 @@ function createDatabase (cb) {
   cb(null, storage)
 })
 ```
+
+> Note that in order to verify consistency during testing, storage implementations need to expose a special method `getIdentityCount`.
 
 ## API
 
