@@ -10,7 +10,7 @@ Using digital signatures instead of passwords for identitiy verification could p
 * phishing resistance
 
 ## How
-[NaCL](http://nacl.cr.yp.to) for cryptos. Bring your own storage. I've put together a SQL backed implementation [here](https://github.com/jessetane/registrar-sql). It would be cool to add IndexedDB and leveldb implementations.
+[NaCl](http://nacl.cr.yp.to) for cryptos. Bring your own storage. I've put together a SQL backed implementation [here](https://github.com/jessetane/registrar-sql). It would be cool to add IndexedDB and leveldb implementations.
 
 ## Example
 
