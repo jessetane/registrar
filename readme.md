@@ -10,7 +10,7 @@ Using digital signatures instead of passwords for identitiy verification could p
 * phishing resistance
 
 ## How
-[NaCl](http://nacl.cr.yp.to) for cryptos. Bring your own storage. I've put together a SQL backed implementation [here](https://github.com/jessetane/registrar-sql). It would be cool to add IndexedDB and leveldb implementations.
+[NaCl](http://nacl.cr.yp.to) for cryptos. Bring your own storage. I made a SQL implementation as an [example](https://github.com/jessetane/registrar-sql). It would be cool to try porting it for IndexedDB and levelup.
 
 ## Example
 
@@ -73,25 +73,26 @@ r.getChallenge(function (err, challenge) {
 
 Make updates:
 ```javascript
-var updates = []
-
-// change factor count (number of signatures required to authenticate)
-updates.push(1)
-
-// add a new key
-var aNewKey = nacl.sign.keyPair()
-updates.push({
-  signature: nacl.sign(challenge, aNewKey.secretKey),
-  publicKey: aNewKey.publicKey
-})
-
-// remove an old key
-updates.push(
-  nacl.hash(key1.publicKey)
-)
-
 r.getChallenge(function (err, challenge) {
   if (err) throw err
+
+  var updates = []
+
+  // change factor count (number of signatures required to authenticate)
+  updates.push(1)
+
+  // add a new key
+  var aNewKey = nacl.sign.keyPair()
+  updates.push({
+    signature: nacl.sign(challenge, aNewKey.secretKey),
+    publicKey: aNewKey.publicKey
+  })
+
+  // remove an old key
+  updates.push(
+    nacl.hash(key1.publicKey)
+  )
+
   r.update(challenge, [
     {
       signature: nacl.sign(challenge, key2.secretKey),
@@ -128,7 +129,7 @@ function createDatabase (cb) {
 
 ### `var r = new Registrar(opts)`
 1. `opts`
-  * `crypto` An NaCL implementation with [this API](https://github.com/dchest/tweetnacl-js)
+  * `crypto` An NaCl implementation with [this API](https://github.com/dchest/tweetnacl-js)
   * `storage` A storage backend with [this API](https://github.com/jessetane/registrar-sql)
 
 The constructor.
